@@ -6,9 +6,9 @@ const DailyMixCard = ({ image, text }) => {
 	return (
 		<View className='mt-2 mx-2 '>
 			<TouchableOpacity className='relative items-center'>
-				<Image source={require(`../assets/image3.png`)} />
+				<Image source={require(`../assets/image3.png`)} className='h-30 w-30' />
 				<View className='w-[100px]'>
-					<Text className='text-[#E4DEEF] mt-1 text-center font-[14px]'>
+					<Text className='text-[#E4DEEF] mt-1 text-center text-[12px]'>
 						{text}
 					</Text>
 				</View>

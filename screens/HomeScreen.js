@@ -17,7 +17,7 @@ const HomeScreen = () => {
 		<SafeAreaView
 			className='flex-1 bg-black px-5'
 			style={{ paddingTop: StatusBar.currentHeight }}>
-			<View className='flex-row justify-between items-center pt-5 mb-10'>
+			<View className='flex-row justify-between items-center pt-5 mb-5'>
 				<View className='flex-row space-x-5 items-center'>
 					<Text className='text-[#844DFB] font-bold text-[16px]'>For You</Text>
 					<Text className='text-white font-bold text-[16px]'>Trending</Text>
@@ -27,13 +27,16 @@ const HomeScreen = () => {
 					<Feather name='settings' size={24} color='white' />
 				</View>
 			</View>
-			<View>
+			<ScrollView className=''>
 				<View>
 					<Text className='text-white text-[16px] font-[600] mb-2'>
 						Recently Played
 					</Text>
 					<View className='flex-row justify-between border bg-[#252032] border-[#d9d9] rounded-[10px] items-center '>
-						<Image source={require("../assets/image1.png")} className='' />
+						<Image
+							source={require("../assets/image1.png")}
+							className='h-30 w-30 '
+						/>
 						<View className='space-y-3 '>
 							<Text className='text-white text-[14px]'>1. Man on the Moon</Text>
 							<Text className='text-white text-[14px]'>
@@ -62,7 +65,7 @@ const HomeScreen = () => {
 					</View>
 					<ChartCard />
 				</View>
-			</View>
+			</ScrollView>
 		</SafeAreaView>
 	);
 };
