@@ -5,22 +5,33 @@ import {
 	ScrollViewBase,
 	StatusBar,
 	Text,
+	TouchableOpacity,
 	View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import DailyMixCard from "../components/DailyMixCard";
 import ChartCard from "../components/ChartCard";
+import { useNavigation } from "@react-navigation/native";
+import { Entypo, Foundation } from "@expo/vector-icons";
 
 const HomeScreen = () => {
+	const navigation = useNavigation();
+	const [isPlaying, setIsplaying] = useState(false);
 	return (
 		<SafeAreaView
 			className='flex-1 bg-black px-5'
 			style={{ paddingTop: StatusBar.currentHeight }}>
 			<View className='flex-row justify-between items-center pt-5 mb-5'>
 				<View className='flex-row space-x-5 items-center'>
-					<Text className='text-[#844DFB] font-bold text-[16px]'>For You</Text>
-					<Text className='text-white font-bold text-[16px]'>Trending</Text>
+					<TouchableOpacity>
+						<Text className='text-[#844DFB] font-bold text-[16px]'>
+							For You
+						</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate("Trending")}>
+						<Text className='text-white font-bold text-[16px]'>Trending</Text>
+					</TouchableOpacity>
 				</View>
 				<View className='flex-row items-center space-x-5'>
 					<Ionicons name='notifications-outline' size={24} color='white' />
@@ -58,14 +69,40 @@ const HomeScreen = () => {
 						<DailyMixCard text={"Mellow Songs from 2010"} />
 					</ScrollView>
 				</View>
-				<View className='mt-3'>
-					<View className='flex-row justify-between'>
-						<Text className='text-white font-[600] text-[16px]'>Chart</Text>
-						<Text className='text-[#844DFB] font-[600] text-[16px]'>More </Text>
-					</View>
-					<ChartCard />
-				</View>
 			</ScrollView>
+			<View className='flex-row justify-between mb-2 items-center bg-gray-800 py-3 px-4 rounded-md'>
+				<View className=' flex-row space-x-4 items-center'>
+					<Image
+						source={require("../assets/image2.png")}
+						className='w-[40] h-[40] rounded-full'
+					/>
+					<View>
+						<Text className='text-white'>Allen</Text>
+						<Text className='text-white text-[10px]'>Rema</Text>
+					</View>
+				</View>
+				<View className=' items-center  justify-center rounded-full '>
+					{!isPlaying ? (
+						<TouchableOpacity>
+							<Entypo
+								name='controller-play'
+								size={30}
+								color='#fff'
+								onPress={() => setIsplaying(!isPlaying)}
+							/>
+						</TouchableOpacity>
+					) : (
+						<TouchableOpacity>
+							<Foundation
+								name='pause'
+								size={30}
+								color='#fff'
+								onPress={() => setIsplaying(!isPlaying)}
+							/>
+						</TouchableOpacity>
+					)}
+				</View>
+			</View>
 		</SafeAreaView>
 	);
 };
